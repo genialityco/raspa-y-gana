@@ -10,15 +10,46 @@ const prizeOptions = [
 ];
 
 function App() {
+  const handleBackToMenu = () => {
+    const hostname = window.location.hostname;
+    const target = hostname === 'localhost'
+      ? 'http://localhost:5175/'
+      : 'https://betplay-game.netlify.app';
+    window.location.href = target;
+  };
+
   return (
-    <ScratchCard
-      useVideoBackground={false}
-      columns={4}
-      rows={3}
-      cellWidth={100}
-      cellHeight={80}
-      prizeOptions={prizeOptions}
-    />
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <button
+        onClick={handleBackToMenu}
+        style={{
+          position: 'absolute',
+          top: '16px',
+          left: '160px',
+          zIndex: 10,
+          backgroundColor: 'rgba(0, 0, 0, 0.6)',
+          color: '#ffd24c',
+          border: 'none',
+          padding: '10px 16px',
+          borderRadius: 8,
+          fontWeight: 'bold',
+          cursor: 'pointer',
+          fontSize: '1rem',
+          transition: 'background 0.3s',
+        }}
+      >
+        Volver
+      </button>
+
+      <ScratchCard
+        useVideoBackground={false}
+        columns={4}
+        rows={3}
+        cellWidth={100}
+        cellHeight={80}
+        prizeOptions={prizeOptions}
+      />
+    </div>
   );
 }
 
