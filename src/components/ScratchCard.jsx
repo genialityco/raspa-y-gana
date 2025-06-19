@@ -5,6 +5,13 @@ function ScratchCell({ prize, width, height, onReveal, disabled, highlight }) {
   const prizeRef = useRef();
   const maskRef = useRef();
 
+  // Creamos el sonido y activamos el loop
+  const scratchSoundRef = useRef(new Audio("/scratching.mp3"));
+  useEffect(() => {
+    const snd = scratchSoundRef.current;
+    snd.load(); 
+  }, []);
+
   const [scratching, setScratching] = useState(false);
   const [wasRevealed, setWasRevealed] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -37,7 +44,7 @@ function ScratchCell({ prize, width, height, onReveal, disabled, highlight }) {
       if (disabled || wasRevealed) return;
       const mCtx = maskRef.current.getContext("2d");
       mCtx.beginPath();
-      mCtx.arc(x, y, 10, 0, Math.PI * 2);
+      mCtx.arc(x, y, 15, 0, Math.PI * 2);
       mCtx.fill();
 
       // Calcular porcentaje raspado
@@ -59,8 +66,13 @@ function ScratchCell({ prize, width, height, onReveal, disabled, highlight }) {
 
   // Handlers de eventos de mouse/táctil
   const handleDown = () => {
-    if (!disabled && !wasRevealed) setScratching(true);
+    if (disabled || wasRevealed) return;
+    const snd = scratchSoundRef.current;
+    snd.currentTime = 0;
+    snd.play().catch(() => {});
+    setScratching(true);
   };
+
   const handleMove = (e) => {
     if (!scratching) return;
     const rect = maskRef.current.getBoundingClientRect();
@@ -68,7 +80,11 @@ function ScratchCell({ prize, width, height, onReveal, disabled, highlight }) {
     const y = (e.clientY ?? e.touches[0].clientY) - rect.top;
     scratch(x, y);
   };
-  const handleUp = () => setScratching(false);
+
+  const handleUp = () => {
+    scratchSoundRef.current.pause();
+    setScratching(false);
+  };
 
   return (
     <div
@@ -111,6 +127,7 @@ function ScratchCell({ prize, width, height, onReveal, disabled, highlight }) {
           onMouseDown={handleDown}
           onMouseMove={handleMove}
           onMouseUp={handleUp}
+          onMouseLeave={handleUp}
           onTouchStart={handleDown}
           onTouchMove={handleMove}
           onTouchEnd={handleUp}
@@ -133,7 +150,7 @@ export default function ScratchGrid({
   const [gridPrizes, setGridPrizes] = useState([]);
   const [won, setWon] = useState(false);
   const [firstPrize, setFirstPrize] = useState(null);
-  const winSound = new Audio("/win-sound.mp3");
+  const winSound = useRef(new Audio("/win-sound.mp3")).current;
 
   // Genera y baraja premios
   const generateGrid = () => {
@@ -162,7 +179,7 @@ export default function ScratchGrid({
       setWon(true);
       winSound.play();
     },
-    [won]
+    [won, winSound]
   );
 
   return (
@@ -235,10 +252,10 @@ export default function ScratchGrid({
           <div
             style={{
               fontSize: "30px",
-              color: "#fff", // Texto blanco
+              color: "#fff",
               fontWeight: "bold",
               marginBottom: "10px",
-              textShadow: "2px 2px 4px rgba(0,0,0,0.5)", // Sombra para resaltar
+              textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
             }}
           >
             🎉 ¡Has ganado un <strong>{firstPrize.name}</strong>! 🎉
