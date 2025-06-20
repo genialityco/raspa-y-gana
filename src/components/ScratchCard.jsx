@@ -57,9 +57,19 @@ function ScratchCell({ prize, width, height, onReveal, disabled, highlight }) {
     [disabled, wasRevealed, onReveal, prize, width, height]
   );
 
+  const scratchSoundRef = useRef(new Audio("/scratching.mp3"));
+  useEffect(() => {
+    const snd = scratchSoundRef.current;
+    snd.load();
+  }, []);
+
   // Handlers de eventos de mouse/táctil
   const handleDown = () => {
-    if (!disabled && !wasRevealed) setScratching(true);
+    if (disabled || wasRevealed) return;
+    const snd = scratchSoundRef.current;
+    snd.currentTime = 0;
+    snd.play().catch(() => {});
+    setScratching(true);
   };
   const handleMove = (e) => {
     if (!scratching) return;
@@ -68,7 +78,11 @@ function ScratchCell({ prize, width, height, onReveal, disabled, highlight }) {
     const y = (e.clientY ?? e.touches[0].clientY) - rect.top;
     scratch(x, y);
   };
-  const handleUp = () => setScratching(false);
+
+  const handleUp = () => {
+    scratchSoundRef.current.pause();
+    setScratching(false);
+  };
 
   return (
     <div
@@ -133,6 +147,7 @@ export default function ScratchGrid({
   const [gridPrizes, setGridPrizes] = useState([]);
   const [won, setWon] = useState(false);
   const [firstPrize, setFirstPrize] = useState(null);
+  const [showModal, setShowModal] = useState(true);
   const winSound = new Audio("/win-sound.mp3");
 
   // Genera y baraja premios
@@ -146,6 +161,7 @@ export default function ScratchGrid({
       [prizes[i], prizes[j]] = [prizes[j], prizes[i]];
     }
     setGridPrizes(prizes);
+    setShowModal(true);
     setWon(false);
     setFirstPrize(null);
   };
@@ -162,7 +178,7 @@ export default function ScratchGrid({
       setWon(true);
       winSound.play();
     },
-    [won]
+    [won, winSound]
   );
 
   return (
@@ -174,6 +190,58 @@ export default function ScratchGrid({
         overflow: "hidden",
       }}
     >
+      {/* Modal de premios al inicio */}
+      {showModal && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            background: "rgba(0,0,0,0.92)",
+            zIndex: 100,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h3>Premios disponibles</h3>
+          <img
+            src="/PREMIOS_RASPA-Y-LISTO.png"
+            alt="Premios"
+            style={{
+              maxWidth: "90vw",
+              maxHeight: "60vh",
+              marginBottom: 32,
+              borderRadius: 16,
+              boxShadow: "0 4px 32px rgba(0,0,0,0.5)",
+              background: "#fff",
+            }}
+          />
+          <button
+            onClick={() => setShowModal(false)}
+            style={{
+              background: "#ffd24c",
+              color: "#222",
+              fontWeight: "bold",
+              fontSize: "1.3rem",
+              border: "none",
+              borderRadius: 12,
+              padding: "18px 48px",
+              cursor: "pointer",
+              boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
+              marginTop: 16,
+              letterSpacing: 1,
+              transition: "background 0.2s",
+            }}
+          >
+            Continuar
+          </button>
+        </div>
+      )}
+
       {useVideoBackground ? (
         <video
           src="/RASPA Y LISTO_FONDO.mov"
@@ -229,7 +297,7 @@ export default function ScratchGrid({
             width: "100%",
             textAlign: "center",
             zIndex: 2,
-            padding: "20px 0", 
+            padding: "20px 0",
           }}
         >
           <div
