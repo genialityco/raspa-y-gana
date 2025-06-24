@@ -267,7 +267,7 @@ export default function ScratchGrid({
             position: "absolute",
             top: "50%",
             left: "50%",
-            width: "auto",
+            width: "100%",
             height: "100%",
             transform: "translate(-50%, -50%)",
             zIndex: 0,
@@ -325,7 +325,6 @@ export default function ScratchGrid({
           alignContent: "center",
           width: "100%",
           height: "100%",
-          paddingTop: "120px",
         }}
       >
         {gridPrizes.map((prize, idx) => (
