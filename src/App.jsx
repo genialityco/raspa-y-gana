@@ -1,5 +1,7 @@
 import React from "react";
 import ScratchCard from "./components/ScratchCard";
+import "./components/touchDebugOverlay.ts";
+import './components/TouchDebugOverlay.css';
 
 const prizeOptions = [
   { src: "/premios/PREMIOS-01.png", name: "BOTILITO" },
