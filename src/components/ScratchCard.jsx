@@ -294,7 +294,7 @@ export default function ScratchGrid({
         <div
           style={{
             position: "absolute",
-            top: "28%",
+            bottom: "20%",
             width: "100%",
             textAlign: "center",
             zIndex: 2,
@@ -321,7 +321,7 @@ export default function ScratchGrid({
           zIndex: 1,
           display: "grid",
           gridTemplateColumns: `repeat(${columns}, ${cellWidth}px)`,
-          gridGap: "10px",
+          gridGap: "25px",
           justifyContent: "center",
           alignContent: "center",
           width: "100%",
