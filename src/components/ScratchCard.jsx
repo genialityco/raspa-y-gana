@@ -49,7 +49,7 @@ function ScratchCell({ prize, width, height, onReveal, disabled, highlight }) {
       const pct = cleared / (width * height);
       setProgress(pct);
 
-      if (pct >= 0.8) {
+      if (pct >= 0.1) {
         setWasRevealed(true);
         onReveal(prize);
       }
@@ -348,6 +348,7 @@ export default function ScratchGrid({
           alignContent: "center",
           width: "100%",
           height: "100%",
+          paddingBottom: "70px"
         }}
       >
         {gridPrizes.map((prize, idx) => (
