@@ -367,7 +367,7 @@ export default function ScratchGrid({
         <div
           style={{
             position: "absolute",
-            bottom: "12%",
+            top: "5%",
             width: "100%",
             textAlign: "center",
             zIndex: 2,

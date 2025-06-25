@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5737",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prod":"serve -l 5737 dist"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.5.2",
