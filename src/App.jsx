@@ -36,7 +36,7 @@ function App() {
           borderRadius: 8,
           fontWeight: 'bold',
           cursor: 'pointer',
-          fontSize: '1rem',
+          fontSize: '1.5rem',
           transition: 'background 0.3s',
         }}
       >
