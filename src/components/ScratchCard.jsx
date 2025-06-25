@@ -192,6 +192,7 @@ export default function ScratchGrid({
       }}
     >
       {/* Modal de premios al inicio */}
+      {/* Modal de premios al inicio */}
       {showModal && (
         <div
           style={{
@@ -208,38 +209,59 @@ export default function ScratchGrid({
             justifyContent: "center",
           }}
         >
-          <h3>Premios disponibles</h3>
-          <img
-            src="/PREMIOS_RASPA-Y-LISTO.png"
-            alt="Premios"
+          <div
             style={{
-              maxWidth: "90vw",
-              maxHeight: "60vh",
-              marginBottom: 32,
-              borderRadius: 16,
-              boxShadow: "0 4px 32px rgba(0,0,0,0.5)",
-              background: "#fff",
-            }}
-          />
-          <button
-            onClick={() => setShowModal(false)}
-            style={{
-              background: "#ffd24c",
-              color: "#222",
-              fontWeight: "bold",
-              fontSize: "1.3rem",
-              border: "none",
-              borderRadius: 12,
-              padding: "18px 48px",
-              cursor: "pointer",
-              boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
-              marginTop: 16,
-              letterSpacing: 1,
-              transition: "background 0.2s",
+              position: "relative",
+              background: "rgba(30, 30, 30, 0.6)",
+              border: "6px solid #ffd24c",
+              borderRadius: 24,
+              boxShadow: "0 8px 40px 0 rgba(0,0,0,0.7)",
+              padding: "40px 32px 32px 32px",
+              maxWidth: "95vw",
+              maxHeight: "85vh",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            Continuar
-          </button>
+            {/* Botón continuar en la esquina superior derecha */}
+            <button
+              onClick={() => setShowModal(false)}
+              style={{
+                position: "absolute",
+                top: 16,
+                right: 16,
+                background: "#ffd24c",
+                color: "#222",
+                fontWeight: "bold",
+                fontSize: "1.1rem",
+                border: "none",
+                borderRadius: 8,
+                padding: "10px 24px",
+                cursor: "pointer",
+                boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
+                letterSpacing: 1,
+                transition: "background 0.2s",
+              }}
+            >
+              Continuar
+            </button>
+            <h3 style={{ color: "#ffd24c", marginBottom: 24, marginTop: 0 }}>
+              Premios disponibles
+            </h3>
+            <img
+              src="/PREMIOS_RASPA-Y-LISTO.png"
+              alt="Premios"
+              style={{
+                maxWidth: "90vw",
+                maxHeight: "60vh",
+                marginBottom: 16,
+                borderRadius: 16,
+                border: "2px solid #ffd24c",
+              }}
+            />
+          </div>
         </div>
       )}
 
