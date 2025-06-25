@@ -304,10 +304,10 @@ export default function ScratchGrid({
         alt="Logo"
         style={{
           position: "absolute",
-          top: "20px",
+          top: "0px",
           left: "50%",
           transform: "translateX(-50%)",
-          height: "200px",
+          height: "180px",
           zIndex: 2,
         }}
       />
@@ -348,7 +348,7 @@ export default function ScratchGrid({
           alignContent: "center",
           width: "100%",
           height: "100%",
-          paddingBottom: "70px"
+          paddingBottom: "130px"
         }}
       >
         {gridPrizes.map((prize, idx) => (
