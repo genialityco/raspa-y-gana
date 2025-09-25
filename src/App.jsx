@@ -16,7 +16,7 @@ function App() {
     const hostname = window.location.hostname;
     const target = hostname === 'localhost'
       ? 'http://localhost:5175/'
-      : 'https://betplay-game.netlify.app';
+      : 'https://landing-games.netlify.app';
     window.location.href = target;
   };
 
