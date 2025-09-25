@@ -192,7 +192,6 @@ export default function ScratchGrid({
       }}
     >
       {/* Modal de premios al inicio */}
-      {/* Modal de premios al inicio */}
       {showModal && (
         <div
           style={{
@@ -207,6 +206,7 @@ export default function ScratchGrid({
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            fontSize: "3rem",
           }}
         >
           <div
@@ -235,7 +235,7 @@ export default function ScratchGrid({
                 background: "#ffd24c",
                 color: "#222",
                 fontWeight: "bold",
-                fontSize: "1.1rem",
+                fontSize: "2rem",
                 border: "none",
                 borderRadius: 8,
                 padding: "10px 24px",
@@ -284,7 +284,7 @@ export default function ScratchGrid({
         />
       ) : (
         <img
-          src="/FONDO_RASPA-Y-LISTO.png"
+          src="/FONDO_RASPA-Y-LISTO.gif"
           alt="Fondo"
           style={{
             position: "absolute",
@@ -300,14 +300,27 @@ export default function ScratchGrid({
       )}
 
       <img
-        src="/LOGO_RASPA-Y-LISTO.png"
+        src="FRASE_SUPERIOR.png"
+        alt="Frase Superior"
+        style={{
+          position: "absolute",
+          top: "5%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          height: "230px",
+          zIndex: 2,
+        }}
+      />
+
+      <img
+        src="/LOGO-BETPLAY.png"
         alt="Logo"
         style={{
           position: "absolute",
-          top: "0px",
+          top: "18%",
           left: "50%",
           transform: "translateX(-50%)",
-          height: "160px",
+          height: "200px",
           zIndex: 2,
         }}
       />
@@ -329,6 +342,7 @@ export default function ScratchGrid({
               color: "#fff", // Texto blanco
               fontWeight: "bold",
               marginBottom: "10px",
+              fontSize: "3rem",
               textShadow: "2px 2px 4px rgba(0,0,0,0.5)", // Sombra para resaltar
             }}
           >
@@ -344,11 +358,11 @@ export default function ScratchGrid({
           display: "grid",
           gridTemplateColumns: `repeat(${columns}, ${cellWidth}px)`,
           gridGap: "25px",
+          marginTop: "30px",
           justifyContent: "center",
           alignContent: "center",
           width: "100%",
           height: "100%",
-          paddingBottom: "70px"
         }}
       >
         {gridPrizes.map((prize, idx) => (
@@ -368,8 +382,10 @@ export default function ScratchGrid({
         <div
           style={{
             position: "absolute",
-            top: "5%",
-            width: "100%",
+            top: "30%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "auto",
             textAlign: "center",
             zIndex: 2,
           }}
@@ -382,12 +398,13 @@ export default function ScratchGrid({
               backgroundPosition: "center",
               border: "none",
               padding: "20px 40px",
-              fontSize: "18px",
+              fontSize: "40px",
               color: "#fff",
               fontWeight: "bold",
               cursor: "pointer",
               borderRadius: "12px",
               backgroundRepeat: "no-repeat",
+              width: "500px",
             }}
           >
             JUGAR DE NUEVO
@@ -402,7 +419,7 @@ export default function ScratchGrid({
           bottom: "20px",
           left: "50%",
           transform: "translateX(-50%)",
-          height: "80px",
+          height: "110px",
           zIndex: 2,
         }}
       />

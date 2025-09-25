@@ -47,8 +47,8 @@ function App() {
         useVideoBackground={false}
         columns={4}
         rows={3}
-        cellWidth={140}    // Aumenta aquí el ancho de cada celda
-        cellHeight={120}   // Aumenta aquí el alto de cada celda
+        cellWidth={200}    // Aumenta aquí el ancho de cada celda
+        cellHeight={200}   // Aumenta aquí el alto de cada celda
         prizeOptions={prizeOptions}
       />
     </div>
