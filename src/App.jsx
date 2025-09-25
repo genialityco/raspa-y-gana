@@ -44,7 +44,7 @@ function App() {
       </button>
 
       <ScratchCard
-        useVideoBackground={false}
+        useVideoBackground={true}
         columns={4}
         rows={3}
         cellWidth={200}    // Aumenta aquí el ancho de cada celda

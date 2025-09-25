@@ -267,7 +267,7 @@ export default function ScratchGrid({
 
       {useVideoBackground ? (
         <video
-          src="/RASPA Y LISTO_FONDO.mov"
+          src="/RASPA_Y_GANA_FONDO.mp4"
           autoPlay
           loop
           muted
@@ -304,10 +304,10 @@ export default function ScratchGrid({
         alt="Frase Superior"
         style={{
           position: "absolute",
-          top: "5%",
+          top: "10%",
           left: "50%",
           transform: "translateX(-50%)",
-          height: "230px",
+          height: "210px",
           zIndex: 2,
         }}
       />
@@ -317,10 +317,10 @@ export default function ScratchGrid({
         alt="Logo"
         style={{
           position: "absolute",
-          top: "18%",
+          top: "22%",
           left: "50%",
           transform: "translateX(-50%)",
-          height: "200px",
+          height: "180px",
           zIndex: 2,
         }}
       />
@@ -329,7 +329,7 @@ export default function ScratchGrid({
         <div
           style={{
             position: "absolute",
-            bottom: "20%",
+            bottom: "15%",
             width: "100%",
             textAlign: "center",
             zIndex: 2,
@@ -338,7 +338,6 @@ export default function ScratchGrid({
         >
           <div
             style={{
-              fontSize: "24px",
               color: "#fff", // Texto blanco
               fontWeight: "bold",
               marginBottom: "10px",
@@ -382,7 +381,7 @@ export default function ScratchGrid({
         <div
           style={{
             position: "absolute",
-            top: "30%",
+            bottom: "23%",
             left: "50%",
             transform: "translateX(-50%)",
             width: "auto",
@@ -416,7 +415,7 @@ export default function ScratchGrid({
         alt="Logo"
         style={{
           position: "absolute",
-          bottom: "20px",
+          bottom: "10%",
           left: "50%",
           transform: "translateX(-50%)",
           height: "110px",
