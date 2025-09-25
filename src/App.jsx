@@ -12,17 +12,17 @@ const prizeOptions = [
 ];
 
 function App() {
-  const handleBackToMenu = () => {
-    const hostname = window.location.hostname;
-    const target = hostname === 'localhost'
-      ? 'http://localhost:5175/'
-      : 'https://landing-games.netlify.app';
-    window.location.href = target;
-  };
+  // const handleBackToMenu = () => {
+  //   const hostname = window.location.hostname;
+  //   const target = hostname === 'localhost'
+  //     ? 'http://localhost:5175/'
+  //     : 'https://landing-games.netlify.app';
+  //   window.location.href = target;
+  // };
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <button
+      {/* <button
         onClick={handleBackToMenu}
         style={{
           position: 'absolute',
@@ -41,7 +41,7 @@ function App() {
         }}
       >
         Volver
-      </button>
+      </button> */}
 
       <ScratchCard
         useVideoBackground={true}
