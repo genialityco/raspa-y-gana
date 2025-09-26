@@ -4,11 +4,11 @@ import "./components/touchDebugOverlay.ts";
 import './components/touchDebugOverlay.css';
 
 const prizeOptions = [
-  { src: "/premios/PREMIOS-01.png", name: "BOTILITO" },
-  { src: "/premios/PREMIOS-02.png", name: "TWISTER VASO" },
-  { src: "/premios/PREMIOS-03.png", name: "BONO SPOTIFY" },
-  { src: "/premios/PREMIOS-04.png", name: "BONO PARAMOUNT" },
-  { src: "/premios/PREMIOS-05.png", name: "NUEVO TURNO" },
+  { src: "/premios/PREMIOS-01.png", name: "BOTILITO", alt: "BOTILITO" },
+  { src: "/premios/PREMIOS-02.png", name: "TWISTER VASO", alt: "TWISTER \nVASO" },
+  { src: "/premios/PREMIOS-03.png", name: "BONO SPOTIFY", alt: "BONO \nSPOTIFY" },
+  { src: "/premios/PREMIOS-04.png", name: "BONO PARAMOUNT", alt: "BONO \nPARAMOUNT" },
+  { src: "/premios/PREMIOS-05.png", name: "NUEVO TURNO", alt: "NUEVO \nTURNO" },
 ];
 
 function App() {

@@ -9,13 +9,47 @@ function ScratchCell({ prize, width, height, onReveal, disabled, highlight }) {
   const [wasRevealed, setWasRevealed] = useState(false);
   const [progress, setProgress] = useState(0);
 
+  // Fallback visual tipo ALT cuando falla la imagen
+  const drawFallback = useCallback(() => {
+    const ctx = prizeRef.current.getContext("2d");
+    ctx.clearRect(0, 0, width, height);
+
+    // Fondo suave
+    ctx.fillStyle = "#f3f4f6";
+    ctx.fillRect(0, 0, width, height);
+
+    // Texto con el nombre del premio
+    const name = prize?.alt || "Premio";
+    ctx.fillStyle = "#111827";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    const fontPx = Math.max(14, Math.floor(height * 0.22));
+    ctx.font = `500 ${fontPx}px system-ui, -apple-system, Segoe UI, Roboto, Arial`;
+
+    // Si es largo, partir en dos líneas simples
+    const maxChars = 8;
+    if (name.length <= maxChars) {
+      ctx.fillText(name, width / 2, height / 2);
+    } else {
+      const mid = Math.floor(name.length / 2);
+      const space = name.indexOf(" ", mid);
+      const splitAt = space > -1 ? space : mid;
+      const l1 = name.slice(0, splitAt).trim();
+      const l2 = name.slice(splitAt).trim();
+      ctx.fillText(l1, width / 2, height / 2 - fontPx * 0.6);
+      ctx.fillText(l2, width / 2, height / 2 + fontPx * 0.6);
+    }
+  }, [width, height, prize?.name]);
+
   // Dibuja imagen del premio y máscara inicial
   useEffect(() => {
     const pCtx = prizeRef.current.getContext("2d");
     pCtx.clearRect(0, 0, width, height);
     const img = new Image();
-    img.src = prize.src;
     img.onload = () => pCtx.drawImage(img, 0, 0, width, height);
+    img.onerror = () => drawFallback(); // <- ALT visual si falla
+    if (prize?.src) img.src = prize.src; // <- solo si hay src
+    else drawFallback(); // <- ALT si no hay src
 
     const maskImg = new Image();
     maskImg.src = "/MONEDAS-RASPA-Y-GANA.png";
@@ -29,7 +63,7 @@ function ScratchCell({ prize, width, height, onReveal, disabled, highlight }) {
 
     setWasRevealed(false);
     setProgress(0);
-  }, [prize, width, height]);
+  }, [prize, width, height, drawFallback]);
 
   // Función de raspado
   const scratch = useCallback(
@@ -313,7 +347,7 @@ export default function ScratchGrid({
       />
 
       <img
-        src="/LOGO-BETPLAY.png"
+        src="/LOGO_RASPA-Y-LISTO.png"
         alt="Logo"
         style={{
           position: "absolute",
