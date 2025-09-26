@@ -449,7 +449,7 @@ export default function ScratchGrid({
         alt="Logo"
         style={{
           position: "absolute",
-          bottom: "2%",
+          bottom: "5%",
           left: "50%",
           transform: "translateX(-50%)",
           height: "230px",
