@@ -445,14 +445,14 @@ export default function ScratchGrid({
         </div>
       )}
       <img
-        src="/LEGALES.png"
+        src="/TEXTOS_LEGALES.png"
         alt="Logo"
         style={{
           position: "absolute",
-          bottom: "10%",
+          bottom: "2%",
           left: "50%",
           transform: "translateX(-50%)",
-          height: "110px",
+          height: "230px",
           zIndex: 2,
         }}
       />
